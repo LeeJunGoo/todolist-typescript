@@ -2,6 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteTodo, editTodo, fetchTodos } from "../../axios/api";
 import TodoListItem from "../../component/main/TodoItem";
 import { INewTodo } from "../../hooks/interface";
+import { useAppDispatch } from "../../store/hooks";
+import { modalToggle } from "../../store/modules/modalForm";
 import { StDiv1, StDiv2, StDoneUl, StSectionList, StWorkingUl } from "../../styles/List";
 
 const TodoList = () => {
@@ -10,6 +12,8 @@ const TodoList = () => {
     queryKey: ["todos"],
     queryFn: fetchTodos,
   });
+
+  const dispatch = useAppDispatch();
 
   const queryClient = useQueryClient();
 
@@ -41,19 +45,19 @@ const TodoList = () => {
   //토글 핸들러
   const ToggleButtonHandler = (id: string, isDone: boolean) => {
     editMutate({ id, isDone });
-    // 함수 내용
   };
 
   //삭제 핸들러
   const DeleteButtonHandler = (id: string) => {
     deleteMutate(id);
   };
-  //수정 핸들러
 
   return (
     <>
       <StSectionList>
-        <StDiv1>{/* <button onClick={onCreateTodoHandler}>create todo</button> */}</StDiv1>
+        <StDiv1>
+          <button onClick={() => dispatch(modalToggle(true))}>create todo</button>
+        </StDiv1>
         <StDiv2>
           <h2>Working</h2>
           <StWorkingUl>

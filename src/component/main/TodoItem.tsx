@@ -1,5 +1,17 @@
 import { TodoDate, TodoItemProps } from "../../hooks/interface";
-import { StBack, StDiv5, StDiv6, StDiv7, StDoneLi, StFront, StH2, StP2, StTime, StWorkingLi } from "../../styles/List";
+import {
+  StBack,
+  StDiv5,
+  StDiv6,
+  StDiv7,
+  StDoneLi,
+  StFront,
+  StH2,
+  StLink,
+  StP2,
+  StTime,
+  StWorkingLi,
+} from "../../styles/List";
 
 const TodoItem = ({ curTodo, ToggleButton, DeleteButton, btnText }: TodoItemProps) => {
   const date = new Date(curTodo.deadLine);
@@ -10,10 +22,6 @@ const TodoItem = ({ curTodo, ToggleButton, DeleteButton, btnText }: TodoItemProp
       <StFront>
         <StH2>{curTodo.title}</StH2>
         <StTime>{date.toLocaleDateString("ko-KR", options)}</StTime>
-        {/* <StFigure>
-          <img src={profile}></img>
-          <span>닉네임</span>
-        </StFigure> */}
 
         <StP2>{curTodo.content}</StP2>
       </StFront>

@@ -6,4 +6,10 @@ const store = configureStore({
   },
 });
 
+//스토어 자체에서 'RootState' 및 'AppDispatch' 유형 추론
+export type RootState = ReturnType<typeof store.getState>;
+
+//추론된 유형: reducer
+export type AppDispatch = typeof store.dispatch;
+
 export default store;

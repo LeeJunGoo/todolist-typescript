@@ -131,7 +131,11 @@ export const StP2 = styled.p`
 
 export const StDiv5 = styled.div`
   display: flex;
+  height: 100%;
+  flex-direction: row;
   justify-content: space-around;
+  align-items: end;
+  padding: 0 0 40px 0;
   button {
     border: 1px;
     border-radius: 5px;

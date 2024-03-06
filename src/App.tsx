@@ -1,13 +1,13 @@
 import { GlobalStyle } from "./assets/GlobalStyle";
-import TodoForm from "./component/main/TodoForm";
-import TodoList from "./component/main/TodoList";
+import Header from "./component/common/Header";
+import Main from "./component/main/Main";
 
 const App = () => {
   return (
     <>
       <GlobalStyle />
-      <TodoForm />
-      <TodoList />
+      <Header />
+      <Main />
     </>
   );
 };
