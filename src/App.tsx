@@ -1,11 +1,15 @@
 import { GlobalStyle } from "./assets/GlobalStyle";
 import TodoForm from "./component/main/TodoForm";
+import TodoList from "./component/main/TodoList";
 
-function App() {
-  <>
-    <GlobalStyle />
-    {/* <TodoForm /> */}
-  </>;
-}
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <TodoForm />
+      <TodoList />
+    </>
+  );
+};
 
 export default App;
