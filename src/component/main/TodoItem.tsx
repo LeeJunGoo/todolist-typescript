@@ -1,17 +1,5 @@
 import { TodoDate, TodoItemProps } from "../../hooks/interface";
-import {
-  StBack,
-  StDiv5,
-  StDiv6,
-  StDiv7,
-  StDoneLi,
-  StFront,
-  StH2,
-  StLink,
-  StP2,
-  StTime,
-  StWorkingLi,
-} from "../../styles/List";
+import { StBack, StDiv5, StDiv6, StDiv7, StDoneLi, StFront, StH2, StP2, StTime, StWorkingLi } from "../../styles/List";
 
 const TodoItem = ({ curTodo, ToggleButton, DeleteButton, btnText }: TodoItemProps) => {
   const date = new Date(curTodo.deadLine);

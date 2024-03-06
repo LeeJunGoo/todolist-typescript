@@ -19,3 +19,9 @@ export interface TodoDate {
   month: "long";
   day: "numeric";
 }
+
+export interface ITest {
+  title: string;
+  content: string;
+  date: string;
+}

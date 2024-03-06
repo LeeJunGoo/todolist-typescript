@@ -1,16 +1,21 @@
 // import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 import { createTodo } from "../../axios/api";
 import { INewTodo } from "../../hooks/interface";
+import useInput from "../../hooks/useInput";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { modalToggle } from "../../store/modules/modalForm";
-import { StForm, StInput, StSectionForm, StTextarea, StDiv } from "../../styles/From";
+import { StDiv, StForm, StInput, StSectionForm, StTextarea } from "../../styles/Form";
 
 const TodoForm = () => {
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-  const [date, setDate] = useState<string>("");
+  const { value, onChangeHandler, onChangeTextAreaHandler, reset } = useInput({
+    title: "",
+    content: "",
+    date: "",
+  });
+
+  const { title, content, date } = value;
 
   const dispatch = useAppDispatch();
   const modalSelector = useAppSelector((state) => state.modalToggle.value);
@@ -38,17 +43,7 @@ const TodoForm = () => {
 
     mutate(newTodo);
     dispatch(modalToggle(false));
-  };
-
-  const onTItleChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-  const onContentChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
-  };
-
-  const onDateChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
+    reset();
   };
 
   if (isPending) {
@@ -64,13 +59,13 @@ const TodoForm = () => {
             <p>그래 도전하는 거야!</p>
             <StForm onSubmit={onSubmitClickHandler}>
               <p>주르제</p>
-              <StInput type="text" value={title} onChange={onTItleChangeHandler}></StInput>
+              <StInput type="text" name="title" value={title} onChange={onChangeHandler}></StInput>
 
               <p>내요옹</p>
-              <StTextarea value={content} onChange={onContentChangeHandler}></StTextarea>
+              <StTextarea value={content} name="content" onChange={onChangeTextAreaHandler}></StTextarea>
 
               <p>양송 일정</p>
-              <StInput type="date" value={date} onChange={onDateChangeHandler}></StInput>
+              <StInput type="date" value={date} name="date" onChange={onChangeHandler}></StInput>
 
               <button type="submit">작성</button>
               <button type="button" onClick={() => dispatch(modalToggle(false))}>

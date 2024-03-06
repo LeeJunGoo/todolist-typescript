@@ -1,13 +1,24 @@
-// import { useState } from "react";
+import { useState, ChangeEvent } from "react";
+import { ITest } from "./interface";
 
-// const useInput = () => {
-//   const [value, setValue] = useState();
+const useInput = (initialValue: ITest) => {
+  const [value, setValue] = useState<ITest>(initialValue);
 
-//   const handler = (e) => {
-//     setValue(e.target.value);
-//   };
-//   const reset = () => {
-//     setValue("");
-// }
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValue((prev) => ({ ...prev, [name]: value }));
+  };
 
-// };
+  const onChangeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setValue((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const reset = () => {
+    setValue(initialValue);
+  };
+
+  return { value, onChangeHandler, onChangeTextAreaHandler, reset };
+};
+
+export default useInput;
